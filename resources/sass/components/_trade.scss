@@ -1,0 +1,21 @@
+.coin-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.coin-name-image {
+    display: flex;
+    line-height: 30px;
+    text-align: center;
+    font-size: large;
+    margin-bottom: 10px;
+}
+
+.coin {
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: silver;
+    border: 2px solid gray;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+}

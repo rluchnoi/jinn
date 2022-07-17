@@ -1,0 +1,212 @@
+<html>
+    <head>
+        <title>Sheesh</title>
+        <link rel="stylesheet" type="text/css" href="index.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="dice-wrapper" onclick="changeSize()">
+                <div class="box-area">
+                    <div class="box large-side box-front"></div>
+                    <div class="box large-side box-right"></div>
+                    <div class="box large-side box-back"></div>
+                    <div class="box large-side box-left"></div>
+                    <div class="box large-side box-top"></div>
+                    <div class="box large-side box-bottom"></div>
+                </div>
+            </div>
+            <div class="shadow big-text header-text">
+                {TEXT}
+            </div>
+            <div class="shadow big-text header-text">
+                {TEXT}
+            </div>
+            <div class="shadow big-text header-text">
+                {TEXT}
+            </div>
+        </div>
+
+<!--        <div class="jackpot-win jackpot-win-hidden">&#129321 Jackpot! &#129321</div>-->
+
+        <div class="page-content">
+<!--            <div class="track">-->
+<!--                <div class="song-play-button song-play-button-w" onclick="changeButton()">&#9658;</div>-->
+<!--                <div class="song-progress">-->
+<!--                    <div class="song-progress-block song-progress-5"></div>-->
+<!--                    <div class="song-progress-block song-progress-10"></div>-->
+<!--                    <div class="song-progress-block song-progress-15"></div>-->
+<!--                    <div class="song-progress-block song-progress-20"></div>-->
+<!--                    <div class="song-progress-block song-progress-25"></div>-->
+<!--                    <div class="song-progress-block song-progress-30"></div>-->
+<!--                    <div class="song-progress-block song-progress-35"></div>-->
+<!--                    <div class="song-progress-block song-progress-40"></div>-->
+<!--                    <div class="song-progress-block song-progress-45"></div>-->
+<!--                    <div class="song-progress-block song-progress-50"></div>-->
+<!--                    <div class="song-progress-block song-progress-55"></div>-->
+<!--                    <div class="song-progress-block song-progress-60"></div>-->
+<!--                    <div class="song-progress-block song-progress-65"></div>-->
+<!--                    <div class="song-progress-block song-progress-70"></div>-->
+<!--                    <div class="song-progress-block song-progress-75"></div>-->
+<!--                    <div class="song-progress-block song-progress-80"></div>-->
+<!--                    <div class="song-progress-block song-progress-85"></div>-->
+<!--                    <div class="song-progress-block song-progress-90"></div>-->
+<!--                    <div class="song-progress-block song-progress-95"></div>-->
+<!--                    <div class="song-progress-block song-progress-100"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="cards">-->
+<!--                <div>-->
+<!--                    <img src="pictures/king_1.jpg" alt="samara...">-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <img src="pictures/king_2.jpg" alt="samara...">-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <img src="pictures/king_3.jpg" alt="samara...">-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <img src="pictures/king_4.jpg" alt="samara...">-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="jackpot-box">
+                <div class="jackpot-box-display">
+                    <div class="jackpot-box-name">
+                        ONLINE CASINO
+                    </div>
+                    <div class="jackpot-roll-all">
+                        <div class="jackpot-roll">
+                            <img class="jackpot-roll-img" src="pictures/lemon.png" alt="">
+                        </div>
+                        <div class="jackpot-roll">
+                            <img class="jackpot-roll-img" src="pictures/lemon.png" alt="">
+                        </div>
+                        <div class="jackpot-roll">
+                            <img class="jackpot-roll-img" src="pictures/lemon.png" alt="">
+                        </div>
+                    </div>
+                    <div class="jackpot-button" onclick="spin()">
+                        SPIN
+                    </div>
+                </div>
+                <div class="coin-drop">
+                    <div class="coin-drop-hole"></div>
+                </div>
+            </div>
+            <div class="coin-box">
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+            </div>
+        </div>
+
+        <script>
+            // for dice
+
+            const LARGE_SIDE = 'large-side';
+            const TINY_SIDE = 'tiny-side';
+
+            function changeSize () {
+                const sides = Array.from(document.getElementsByClassName('box'));
+
+                sides.forEach(el => {
+                    let styles = el.classList;
+                    if (styles.contains(LARGE_SIDE)) {
+                        styles.replace(LARGE_SIDE, TINY_SIDE);
+                    } else {
+                        styles.replace(TINY_SIDE, LARGE_SIDE);
+                    }
+                })
+            }
+
+            // for track
+
+            let clicked = false;
+
+            function changeButton () {
+                const button = Array.from(document.getElementsByClassName('song-play-button'))[0];
+                if (clicked) {
+                    button.innerHTML = `&#9658;`
+                    button.classList.replace('song-play-button-t', 'song-play-button-w');
+                } else {
+                    button.innerHTML = `&#9616;&nbsp;&#9612;`
+                    button.classList.replace('song-play-button-w', 'song-play-button-t');
+                }
+                clicked = !clicked;
+            }
+
+            // change background
+
+            // let count = 0;
+            //
+            // const interval = setInterval(() => {
+            //     count += 5;
+            //     const progress = Array.from(document.getElementsByClassName(`song-progress-${count}`))[0];
+            //     progress.classList.add('song-progress-block-passed');
+            //     if (count >= 100) {
+            //         setTimeout(() => {
+            //             const progresses = Array.from(document.getElementsByClassName('song-progress-block'));
+            //             progresses.forEach((e) => e.classList.remove('song-progress-block-passed'));
+            //         }, 1000);
+            //         clearInterval(interval);
+            //     }
+            // }, 1000)
+
+            // helpers
+            const awaitTimeout = delay =>
+                new Promise(resolve => setTimeout(resolve, delay));
+
+            const allEqual = arr => arr.every(el => el === arr[0] )
+
+            // spin
+            const frames = ['pictures/7.png', 'pictures/lemon.png', 'pictures/cherry.png'];
+            const framesQuantity = frames.length;
+            const initialFrame = 'pictures/animation.gif';
+            let processing = false;
+            let jackpot = false;
+
+            async function spin () {
+                if (processing) {
+                    console.log('aborted');
+                    return;
+                }
+
+                processing = true;
+
+                const images = Array.from(document.getElementsByClassName('jackpot-roll-img'));
+                images.forEach(image => {
+                    image.src = initialFrame;
+                });
+
+                let timeout = 1000;
+
+                await awaitTimeout(timeout);
+
+                for (const image of images) {
+                    await awaitTimeout(timeout)
+                        .then(() => {
+                            const index = Math.floor(Math.random() * framesQuantity);
+                            image.src = frames[index];
+                        })
+                }
+
+                if (allEqual(images.map(image => image.src))) {
+                    await awaitTimeout(50);
+                    jackpot = true;
+                    const jackpotBox = Array.from(document.getElementsByClassName('jackpot-box'))[0];
+                    // const jackpotWin = Array.from(document.getElementsByClassName('jackpot-win'))[0];
+                    jackpotBox.classList.add('jackpot-box-win');
+                    // jackpotWin.classList.remove('jackpot-win-hidden');
+                }
+
+                processing = false;
+            }
+        </script>
+    </body>
+</html>

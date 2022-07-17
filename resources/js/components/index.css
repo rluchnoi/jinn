@@ -1,0 +1,359 @@
+:root {
+    --mbs: 75px;
+    --mbs-half: 37px;
+
+    --mbs-neg: -75px;
+    --mbs-neg-half: -37px;
+
+    --mts: 50px;
+    --mts-neg: -50px;
+}
+
+body {
+    background-color: lightpink;
+    font-family: Georgia, cursive;
+}
+
+.header {
+    border: 3px solid black;
+
+    background: crimson;
+
+    padding: 20px 20px 20px 120px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.dice-wrapper {
+    margin-top: 50px;
+    margin-left: -70px;
+    margin-right: 20px;
+    top: 12%;
+    left: 8%;
+    perspective: 2000px;
+}
+
+.box-area {
+    position: fixed;
+    transform-style: preserve-3d;
+    animation-name: rotate;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate3d(0,0,0,0deg);
+    }
+    100% {
+        transform: rotate3d(1,1,0,360deg);
+    }
+}
+.box {
+    position: absolute;
+    box-sizing: border-box;
+    border: 3px solid black;
+}
+
+.large-side {
+    width: var(--mbs);
+    height: var(--mbs);
+    transition: all 1.5s ease-in-out;
+}
+
+.tiny-side {
+    width: var(--mts);
+    height: var(--mts);
+    transition: all 1s ease-in-out;
+}
+
+.box-front {
+    transform:
+            translateX(var(--mbs-neg-half))
+            translateY(var(--mbs-neg-half))
+            translateZ(var(--mbs-half));
+
+    background: url(pictures/2.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-back {
+    transform:
+            translateX(var(--mbs-neg-half))
+            translateY(var(--mbs-neg-half))
+            translateZ(var(--mbs-neg-half));
+
+    background: url(pictures/4.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-right {
+    transform:
+            translateY(var(--mbs-neg-half))
+            rotateY(90deg);
+
+    background: url(pictures/3.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-left {
+    transform:
+            translateY(var(--mbs-neg-half))
+            translateX(var(--mbs-neg))
+            rotateY(90deg);
+
+    background: url(pictures/5.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-bottom {
+    transform:
+            translateX(var(--mbs-neg-half))
+            rotateX(90deg);
+
+    background: url(pictures/1.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-top {
+    transform:
+            translateX(var(--mbs-neg-half))
+            translateY(var(--mbs-neg))
+            rotateX(90deg);
+
+    background: url(pictures/6.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-area {
+    transform: rotateX(90deg) rotateY(90deg);
+}
+
+/*text*/
+
+.big-text {
+    font-size: 60px;
+}
+
+.shadow {
+    color: #fff;
+    font-weight: bold;
+    padding: 5px;
+    border: 3px solid crimson;
+    text-shadow:
+            2px 2px 0 grey,
+            2px 2px 0 grey,
+            5px 5px 0 #222,
+            5px 5px 0 #222;
+    text-align: center;
+}
+
+.shadow:hover {
+    background: darkred;
+    border-radius: 20px;
+
+    transition: background 0.5s ease-in-out;
+}
+
+/*track*/
+
+.track {
+    background-color: white;
+    border: 5px solid darkred;
+    border-radius: 50px;
+    margin: 50px 20px;
+    padding: 10px 30px;
+    display: flex;
+}
+
+.song-play-button {
+    color: gold;
+    font-size: x-large;
+    font-weight: bold;
+    background-color: crimson;
+    border: 5px solid gold;
+    border-radius: 50%;
+}
+
+.song-play-button-w {
+    padding: 15px 15px 15px 18px;
+}
+
+.song-play-button-t {
+    padding: 15px 9px 15px 7.5px;
+}
+
+.song-play-button:hover {
+    background-color: #e83131;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.song-play-button:active {
+    background-color: #b32d2d;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.song-progress {
+    display: flex;
+    margin: 0 20px;
+    width: 100%;
+}
+
+.song-progress-block {
+    background-color: crimson;
+    width: 100%;
+    transition: background-color 2s ease-in-out;
+}
+
+.song-progress-block-passed {
+    background-color: darkred;
+    transition: background-color 1s ease-in-out;
+}
+
+/*cards*/
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cards img {
+    border-radius: 20px;
+    border: 3px solid black;
+    width: 200px;
+    height: 300px;
+}
+
+/*jackpot*/
+
+.page-content {
+    background-color: blueviolet;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.jackpot-win {
+    background-color: gold;
+    margin-top: 10px;
+    text-align: center;
+
+    color: crimson;
+    font-weight: bold;
+    font-size: 60px;
+
+    border: 3px solid orange;
+    box-shadow: 0 0 20px white;
+}
+
+.jackpot-win-hidden {
+    display: none;
+}
+
+.jackpot-box {
+    background-color: silver;
+    margin: 50px;
+    padding: 50px;
+    border: 3px solid black;
+    border-radius: 20px;
+    display: flex;
+}
+
+.jackpot-box-display {
+    background-color: darkslateblue;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.jackpot-box-win {
+    box-shadow: 0 0 50px white;
+}
+
+.jackpot-box-name {
+    text-align: center;
+
+    color: gold;
+    background-color: brown;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.jackpot-box-name-win {
+    color: gold;
+    box-shadow: 0 0 20px white;
+}
+
+.jackpot-roll-all {
+    display: flex;
+    justify-content: center;
+}
+
+.jackpot-button {
+    text-align: center;
+    background-color: red;
+    border-radius: 20px;
+
+    color: #fff;
+    font-weight: bold;
+    font-size: 60px;
+
+    box-shadow: 0 10px darkred;
+}
+
+.jackpot-button:hover {
+    background-color: orangered;
+    transition: all 0.2s ease-in-out;
+}
+
+.jackpot-button:active {
+    background-color: orangered;
+    box-shadow: 0 5px brown;
+    transform: translateY(5px);
+}
+
+.jackpot-roll {
+    margin: 20px;
+    padding: 50px 10px;
+    background-color: white;
+    border: 3px solid black;
+}
+
+.jackpot-roll img {
+    height: 100px;
+}
+
+.coin-box {
+    background-color: silver;
+    margin: 50px;
+    padding: 20px;
+    border: 3px solid black;
+    border-radius: 20px;
+}
+
+.coin {
+    padding: 50px;
+    border: 3px solid orange;
+    background-color: gold;
+    box-shadow: 0 -10px orange;
+    border-radius: 50%;
+    margin-bottom: -80px;
+}
+
+.coin:last-child {
+    margin-bottom: 0;
+}
+
+.coin-drop {
+    margin: 100px 20px;
+    padding: 20px;
+    background-color: brown;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.coin-drop-hole {
+    background-color: #222222;
+    padding: 50px 10px;
+}

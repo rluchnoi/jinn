@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    background-color: grey;
+    border-bottom: 5px solid darkgrey;
+}
+
+.header-link {
+    margin-right: 50px;
+    font-size: large;
+    font-weight: bolder;
+    text-align: center;
+    color: whitesmoke;
+    margin: 15px 20px;
+    padding: 10px;
+    min-width: 100px;
+    border-radius: 10px;
+}
+
+.header-link:hover {
+    color: black;
+    background-color: silver;
+    transition: all 0.2s ease-in-out;
+}

@@ -1,0 +1,108 @@
+$mbs: 40px;
+$mbs-half: 20px;
+$mbs-neg: -40px;
+$mbs-neg-half: -20px;
+$mts: 30px;
+$mts-neg: -30px;
+
+.dice-wrapper {
+    perspective: 2000px;
+    margin: 40px 30px 10px 50px;
+}
+
+.box-area {
+    position: fixed;
+    transform-style: preserve-3d;
+    animation-name: rotateDice;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes rotateDice {
+    0% {
+        transform: rotate3d(0,0,0,0deg);
+    }
+    100% {
+        transform: rotate3d(1,1,0,360deg);
+    }
+}
+.box {
+    position: absolute;
+    box-sizing: border-box;
+    border: 2px solid black;
+}
+
+.large-side {
+    width: $mbs;
+    height: $mbs;
+    transition: all 1.5s ease-in-out;
+}
+
+.tiny-side {
+    width: $mts;
+    height: $mts;
+    transition: all 1s ease-in-out;
+    border: 2px solid whitesmoke;
+}
+
+.box-front {
+    transform:
+            translateX($mbs-neg-half)
+            translateY($mbs-neg-half)
+            translateZ($mbs-half);
+
+    background: url(../../../public/pictures/2.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-back {
+    transform:
+            translateX($mbs-neg-half)
+            translateY($mbs-neg-half)
+            translateZ($mbs-neg-half);
+
+    background: url(../../../public/pictures/4.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-right {
+    transform:
+            translateY($mbs-neg-half)
+            rotateY(90deg);
+
+    background: url(../../../public/pictures/3.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-left {
+    transform:
+            translateY($mbs-neg-half)
+            translateX($mbs-neg)
+            rotateY(90deg);
+
+    background: url(../../../public/pictures/5.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-bottom {
+    transform:
+            translateX($mbs-neg-half)
+            rotateX(90deg);
+
+    background: url(../../../public/pictures/1.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-top {
+    transform:
+            translateX($mbs-neg-half)
+            translateY($mbs-neg)
+            rotateX(90deg);
+
+    background: url(../../../public/pictures/6.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.box-area {
+    transform: rotateX(90deg) rotateY(90deg);
+}

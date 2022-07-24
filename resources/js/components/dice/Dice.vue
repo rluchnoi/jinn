@@ -4,34 +4,17 @@
         @click="changeSize"
     >
         <div class="box-area">
-            <div 
-                class="box large-side box-front"
-                :class="currentClass"
-            ></div>
-            <div 
-                class="box large-side box-right"
-                :class="currentClass"
-            ></div>
-            <div 
-                class="box large-side box-back"
-                :class="currentClass"
-            ></div>
-            <div 
-                class="box large-side box-left"
-                :class="currentClass"
-            ></div>
-            <div 
-                class="box large-side box-top"
-                :class="currentClass"
-            ></div>
-            <div 
-                class="box large-side box-bottom"
-                :class="currentClass"
-            ></div>
+            <dice-side
+                v-for="(sideClass, index) in sidesClasses"
+                :key="index"
+                :class="defineCurrentClasses(sideClass)"
+            />
         </div>
     </div>
 </template>
 <script>
+    import DiceSide from './DiceSide.vue';
+
     export default {
         /**
          * Name
@@ -43,8 +26,15 @@
          */
         data () {
             return {
-                sizeIsLarge: true
+                sizeIsLarge: false
             }
+        },
+
+        /**
+         * Components
+         */
+        components: {
+            DiceSide
         },
 
         /**
@@ -66,9 +56,23 @@
             },
 
             /**
-             * Currect dice size
+             * Dice sides classes
              */
-            currentClass () {
+            sidesClasses () {
+                return [
+                    'box-front', 
+                    'box-right',
+                    'box-back',
+                    'box-left',
+                    'box-top',
+                    'box-bottom'
+                ];
+            },
+
+            /**
+             * Currect dice side size
+             */
+            currentDiceSizeClass () {
                 return this.sizeIsLarge 
                     ? this.largeSizeClass 
                     : this.tinySizeClass
@@ -79,6 +83,14 @@
          * Methods
          */
         methods: {
+            /**
+             * Define current dice side classes
+             * @param {*} sideClass 
+             */
+            defineCurrentClasses (sideClass) {
+                return sideClass + ' ' + this.currentDiceSizeClass;
+            },
+
             /**
              * Change dice size
              */

@@ -22,15 +22,7 @@
 <script>
     import axios from 'axios'
     import Coin from '../classes/coin'
-
-    const REFRESH_TIME = 20;
-
-    const BITCOIN  = 'bitcoin';
-    const ETHEREUM = 'ethereum';
-    const LITECION = 'litecoin';
-    const DOGECOIN = 'dogecoin';
-    const SOLANA   = 'solana';
-    const POLKADOT = 'polkadot'
+    import { REFRESH_TIME, supportedTokens } from '../variables/tradeConfig';
 
     export default {
         /**
@@ -44,26 +36,25 @@
         data () {
             return {
                 coins: [],
+                intervalId: null,
             }
         },
 
         /**
-         * Created
+         * Mounted
          */
-        created () {
+        mounted () {
             this.getCurrentPrices();
-            setInterval(() => {
+            this.intervalId = setInterval(() => {
                 this.getCurrentPrices();
             }, REFRESH_TIME * 1000);
         },
 
         /**
-         * Displayed currencies list
+         * Destroyed
          */
-        computed: {
-            coinsList () {
-                return [BITCOIN, ETHEREUM, LITECION, DOGECOIN, SOLANA, POLKADOT]
-            }
+        destroyed () {
+            clearInterval(this.intervalId);
         },
 
         /**
@@ -72,7 +63,7 @@
         methods: {
             updateData (data) {
                 this.coins = [];
-                this.coinsList.forEach(coin => {
+                supportedTokens.forEach(coin => {
                     const coinData = data.filter(item => item.id === coin)[0];
                     const coinParsed = new Coin(coinData.current_price, coinData.image, coinData.name);
                     this.coins.push(coinParsed);
@@ -84,11 +75,8 @@
             getCurrentPrices () {
                 axios({
                     method: 'get',
-                    url: 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd',
-                    headers: {
-                        'Content-Type':  'application/json',
-                    }
-                }).then((response) => {
+                    url: 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd'
+                }).then(response => {
                     this.updateData(response.data);
                 })
             }

@@ -31,4 +31,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'casino' => [
+        'spin' => [
+            'quantity' => 3,
+        ],
+        'roulette' => [
+            'quantity' => 20,
+        ]
+    ]
 ];

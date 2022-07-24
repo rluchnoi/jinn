@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-    import Dice from '../components/Dice.vue'
+    import Dice from '../components/dice/Dice.vue'
 
     export default {
         /**
@@ -18,6 +18,30 @@
          */
         components: {
             Dice
+        },
+
+        /**
+         * Mounted
+         */
+        mounted () {
+            this.getGameResult();
+        },
+
+        methods: {
+            /**
+             * Get prices
+             */
+            getGameResult () {
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8098/api/casino/play',
+                    data: {
+                        'type': 0,
+                    }
+                }).then(response => {
+                    console.log(response)
+                })
+            }
         }
     }
 </script>
